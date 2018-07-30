@@ -104,3 +104,18 @@ venv.bak/
 .mypy_cache/
 
 .idea/
+.idea/workspace.xml
+venv/
+
+*.pyc
+__pycache__/
+
+instance/
+
+.pytest_cache/
+.coverage
+htmlcov/
+
+dist/
+build/
+*.egg-info/
