@@ -17,7 +17,7 @@ def test_index(client, auth):
     assert b'href="/1/update"' in response.data
 
 
-@pytest.mark.parametirze('path', (
+@pytest.mark.parametrize('path', (
     '/create',
     '/1/update',
     '/1/delete',
@@ -41,7 +41,7 @@ def test_author_required(app, client, auth):
     # current user doesn't see edit link
     assert b'herf="1/update"' not in client.get('/').data
 
-@pytest.mark.parametirze('path',(
+@pytest.mark.parametrize('path',(
     '/2/update',
     '/2/delete',
 ))
@@ -62,7 +62,7 @@ def test_create(client, auth, app):
 
 def test_update(client, auth, app):
     auth.login()
-    assert client.get('/1/update').stauts_code == 200
+    assert client.get('/1/update').status_code == 200
     client.post('/1/update', data={'title': 'updated', 'body': ''})
 
     with app.app_context():
@@ -78,8 +78,9 @@ def test_update(client, auth, app):
 def test_create_update_validate(client, auth, path):
     auth.login()
     response = client.post(path, data={'title': '', 'body': ''})
+    print (response.data)
     assert b'Title is required.' in response.data
-
+    
 
 def test_delete(client, auth, app):
     auth.login()
